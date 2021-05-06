@@ -29,7 +29,7 @@ var timer = setInterval(function(){
         tempo--;
     }
 
-    document.getElementById("tempo").innerHTML = "tempo rimanente:" + tempo;
+    document.getElementById("tempo").innerHTML = "tempo rimanente: " + tempo;
 }, 1000);
 
     
@@ -37,19 +37,27 @@ var timer = setInterval(function(){
 //alla fine dei 30 secondi chiedere di inserire i numeri generati uno alla volta
 var numeriUtente = [];
 var sceltaNumeri;
+var numeriErrati = [];
+var i = 0;
 
 setTimeout(function(){
 
-    sceltaNumeri = prompt("Inserisci i numeri visti in precedenza!");
-    
-    while(numeriUtente.length < 5){
+    for(i = 0; i < 5; i++){
 
-        if(!numeriUtente.includes(sceltaNumeri)){
+        sceltaNumeri = Number(prompt("Inserisci i numeri visti in precedenza!"));
+
+        if(numeriPc.includes(sceltaNumeri)){
             numeriUtente.push(sceltaNumeri);
+        }else{
+            numeriErrati.push(sceltaNumeri);
         }
         
     }
+    console.log(numeriUtente);
+    console.log(numeriErrati);
+    document.getElementById('numeri_pc').innerHTML = "I numeri da indovinare erano: " + numeriPc;
+    document.getElementById('numeri_utente').innerHTML = "I numeri indovinati sono: " + numeriUtente;
+    document.getElementById('numeri_errati').innerHTML = "I numeri non corretti sono:" + numeriErrati;
 }, 6500);
-console.log(numeriUtente);
 
 //verificare i numeri inseriti da user se corrispondono a quelli generati casualmente
